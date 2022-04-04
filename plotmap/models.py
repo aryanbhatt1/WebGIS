@@ -52,4 +52,24 @@ class DepartmentContactDetails(models.Model):
     contactEmail = models.EmailField('Contact Email', null=True)
 
     def __str__(self):
-        return self.departmentAddress
+        return self.departmentName
+
+    class Meta:
+        verbose_name = "Department Contact Detail"
+        verbose_name_plural = "Department Contact Details"
+
+class ItemDescription(models.Model):
+    departmentContactDetails = models.ForeignKey(DepartmentContactDetails, on_delete=models.CASCADE, null=True)
+    item_desc = models.CharField('Item Description', max_length=200, null=True)
+    location = models.CharField('Location', max_length=50, null=True)
+    item_live_location_source = models.CharField('Item Live Location Source', max_length=40, null=True)
+    last_updation = models.DateField('Last Updation', null=True)
+
+    def __str__(self):
+        return self.item_desc
+
+    class Meta:
+        verbose_name = "Item Description"
+        verbose_name_plural = "Item Descriptions"
+
+

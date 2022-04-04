@@ -84,22 +84,26 @@
               'type': 'geojson',
               'data': {
                   'type': 'FeatureCollection',
-                  'features': [{
-                      'type': 'Feature',
-                    'properties': {
-                      {% for i in details %}
-                        'description':"<p><strong>Department Name</strong><br>{{ i.departmentName }}<br><strong>Department Address</strong><br>{{ i.departmentAddress }}<br><strong>Contact Person</strong><br>{{ i.contactperson }}<br><strong>Contact No</strong><br>{{ i.contactno }}<br><strong>Contact Email</strong><br>{{ i.contactEmail }}</p>"
-                      {% endfor %}
-                    },
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': [{{ longitude }}, {{ latitude }}]
-                    }
-                },
+                  'features': [
+                      {% for k in final_address %}
+                          {
+                          'type': 'Feature',
+                          'properties': {
+                                  'description':"<p><strong>Department Name</strong><br>{{ k.departmentName }}<br><strong>Department Address</strong><br>{{ k.departmentAddress }}<br><strong>Contact Person</strong><br>{{ k.contactperson }}<br><strong>Contact No</strong><br>{{ k.contactno }}<br><strong>Contact Email</strong><br>{{ k.contactEmail }}</p>"
 
-                ]
-            }
-         });
+                          },
+                          'geometry': {
+                              'type': 'Point',
+                              'coordinates': [
+                                  {{ k.longitude }}, {{ k.latitude }}
+                              ]
+                          }
+                      },
+                      {% endfor %}
+
+                  ]
+              }
+          });
         // Add a layer showing the places.
         map.addLayer({
         'id': 'places',

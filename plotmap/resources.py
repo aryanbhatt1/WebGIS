@@ -6,7 +6,7 @@ class DepartmentContactDetailsAdminResource(resources.ModelResource):
     id = fields.Field(saves_null_values=False, column_name='id', attribute='id',
                       widget=widgets.IntegerWidget())
     state = fields.Field(saves_null_values=True, column_name='state',
-                            attribute='state', widget=widgets.ForeignKeyWidget(State, 'state'))
+                         attribute='state', widget=widgets.ForeignKeyWidget(State, 'state'))
     district = fields.Field(saves_null_values=True, column_name='district',
                             attribute='district', widget=widgets.ForeignKeyWidget(District, 'district'))
     ItemCode = fields.Field(saves_null_values=True, column_name='ItemCode',
@@ -29,5 +29,25 @@ class DepartmentContactDetailsAdminResource(resources.ModelResource):
     class Meta:
         model = DepartmentContactDetails
         fields = ('id', 'district', 'ItemCode', 'Item', 'quantity',
-                  'departmentName', 'departmentAddress','contactperson', 'contactno', 'contactEmail')
+                  'departmentName', 'departmentAddress', 'contactperson', 'contactno', 'contactEmail')
         clean_model_instances = True
+
+
+class ItemDescriptionResource(resources.ModelResource):
+    id = fields.Field(saves_null_values=False, column_name='id', attribute='id',
+                      widget=widgets.IntegerWidget())
+    item_desc = fields.Field(saves_null_values=True, column_name='item_dec', attribute='item_desc',
+                             widget=widgets.CharWidget())
+    location = fields.Field(saves_null_values=True, column_name='location', attribute='location',
+                            widget=widgets.CharWidget())
+    item_live_location_source = fields.Field(saves_null_values=True, column_name='item_live_location_source', attribute='item_live_location_source',
+                            widget=widgets.CharWidget())
+    last_updation = fields.Field(saves_null_values=True, column_name='last_updation', attribute='last_updation',
+                                 widget=widgets.DateWidget())
+
+    class Meta:
+        model = ItemDescription
+        clean_model_instances = True
+
+
+

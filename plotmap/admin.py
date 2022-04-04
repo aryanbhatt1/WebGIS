@@ -1,7 +1,7 @@
 from django.contrib import admin
 from import_export.admin import ImportExportModelAdmin
 from .models import *
-from .resources import DepartmentContactDetailsAdminResource
+from .resources import DepartmentContactDetailsAdminResource, ItemDescriptionResource
 
 # Register your models here.
 admin.site.register(State)
@@ -26,3 +26,16 @@ class DepartmentContactDetailsAdmin(ImportExportModelAdmin):
 
 
 admin.site.register(DepartmentContactDetails, DepartmentContactDetailsAdmin)
+
+
+class ItemDescriptionAdmin(ImportExportModelAdmin):
+    resource_class = ItemDescriptionResource
+
+    list_display = [
+        'item_desc',
+        'location',
+        'item_live_location_source',
+        'last_updation'
+    ]
+
+admin.site.register(ItemDescription, ItemDescriptionAdmin)
