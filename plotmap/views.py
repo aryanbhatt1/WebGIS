@@ -31,7 +31,6 @@ def AddressToCoordinates(state_form, district_form, itemcode_form, item_form):
             departmentAddress=str(i)).filter(ItemCode__ItemCode=str(itemcode_form)).filter(Item__Item=str(item_form)))[0]
         dic["contactEmail"] = list(DepartmentContactDetails.objects.values_list('contactEmail', flat=True).filter(
             departmentAddress=str(i)).filter(ItemCode__ItemCode=str(itemcode_form)).filter(Item__Item=str(item_form)))[0]
-        final_address.append(dic)
     return final_address
 
 
